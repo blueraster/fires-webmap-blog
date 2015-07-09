@@ -12,7 +12,8 @@ require([
 
   options = {
     mapOptions: {
-      logo: false
+      logo: false,
+      sliderPosition:"top-right"
     }
   };
 
