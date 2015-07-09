@@ -7,17 +7,29 @@
   <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
   <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/nihilo/nihilo.css">
   <style>
-    html, body, #map {
+    html {
       padding:0;
       margin:0;
-      height: 100%;
-      width:100%;
-      font-family: "Trebuchet MS", Helvetica, sans-serif
+
+    
+    }
+    #map{
+      width: 100%;
+      height:100%;
     }
     body{
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      padding:0;
+      margin:0;
       position: absolute;
-      height: 100%;
-      width:100%;
+      font-family: "Trebuchet MS", Helvetica, sans-serif;
+
+    }
+        #embed_npfido{
+      display: none
     }
     .esriBookmarks {
   width: 215px;
@@ -78,6 +90,7 @@
   </style>
 </head>
 <body class='nihilo'>
+
   <div id="map" class="map">
     <div id="swipeDiv"></div>
     <div id='bookmarks'></div>
@@ -102,7 +115,8 @@
         </table>
       </div>
     </div>
-  </div>
+  
+</body>
 
   <script>
       var base = location.pathname.replace(/\/[^/]+$/, '');
