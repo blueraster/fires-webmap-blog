@@ -9,14 +9,15 @@ require([
 
   options = {
     mapOptions: {
-      logo: false
+      logo: false,
+      minZoom: 9,
+      sliderPosition: 'top-right'
     }
   };
 
   mapDeferred = arcgisUtils.createMap(webmapId, 'map', options);
   mapDeferred.then(function (response) {
     webmap = response.map;
-    webmap.disableMapNavigation();
   });
 
 });
