@@ -11,64 +11,87 @@
       margin:0;
       height:100%;
     }
+    .esriSimpleSlider {
+        display: none;
+      }
+      .gfw-logo {
+        background: url('../assets/fires-logo.png') no-repeat center;
+        position: absolute;
+        height: 86px;
+        width: 86px;
+        z-index: 5;
+        left: 5px;
+        top: 5px;
+      }
+      .legend {
+        background-color: #222324;
+        position: absolute;
+        width: 200px;
+        color: white;
+        z-index: 5;
+        right: 10px;
+        bottom: 40px;
+        box-shadow: 0px 0px 2px #ddd;
+        font-size: 12px;
+      }
+      .legend-swatch {
+        border: 1px solid #000;
+        display: inline-block;
+        border-radius: 35px;
+        margin: 0 2px;
+        height: 15px;
+        width: 15px;
+      }
+      .header{
+        padding-left: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 13px
+      }
+      .fires { background-color: #FF7F7F; }
+      .fires-noaa{ background-color: #FCB54B; }
+      .protected-areas { background-color: #910702; }
   </style>
-  <script src="//js.arcgis.com/3.13/"></script>
-  <script>
-
-    require([
-      "esri/map", 
-      "esri/dijit/LayerSwipe",
-      "esri/arcgis/utils",
-      "dojo/_base/array",
-      "dojo/domReady!"
-    ], function(
-      Map, LayerSwipe, arcgisUtils, array 
-    )  {
-
-      var mapDeferred = arcgisUtils.createMap("2f5dc964df1c478e806beb2f59946363", "map");
-      mapDeferred.then(function(response){
-
-        var id;
-        var map = response.map;
-        map.hideZoomSlider();
-        map.disableMapNavigation();
-
-        var title = "WV03";
-        
-        //loop through all the operational layers in the web map 
-        //to find the one with the specified title;
-        var layers = response.itemInfo.itemData.operationalLayers;
-        array.some(layers, function(layer){
-          if(layer.title === title){
-            id = layer.id;
-            if(layer.featureCollection && layer.featureCollection.layers.length){
-              id = layer.featureCollection.layers[0].id;
-            }
-            return true;  
-          }else{
-            return false;
-          }
-        });
-        //get the layer from the map using the id and set it as the swipe layer. 
-        if(id){
-          var swipeLayer = map.getLayer(id);
-          var swipeWidget = new LayerSwipe({
-            type: "vertical",  //Try switching to "scope" or "horizontal"
-            map: map,
-            layers: [swipeLayer]
-          }, "swipeDiv");
-          swipeWidget.startup();
-        }
-      });
-
-    });
-  </script>
-
 </head>
 <body>
   <div id="map" class="map">
     <div id="swipeDiv"></div>
+    <div class="gfw-logo"></div>
+      <div class="legend">
+      <div class='header'>Dates: June 24, 2015 - July 1, 2015</div>
+        <table>
+          <tbody>
+            <tr>
+              <td><span class="legend-swatch fires-noaa"></span></td>
+              <td><span class="legend-label">NOAA-18 fires</span></td>
+            </tr>
+            <tr>
+              <td><span class="legend-swatch fires"></span></td>
+              <td><span class="legend-label">NASA Fire Alerts</span></td>
+            </tr>
+            <tr>
+              <td><span class="legend-swatch protected-areas"></span></td>
+              <td><span class="legend-label">Tesso Nilo National Park</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
+
+  <script>
+      var base = location.pathname.replace(/\/[^/]+$/, '');
+      var dojoConfig = {
+        parseOnLoad: false,
+        async: true,
+        packages: [
+          { name: 'js', location: base + '/js' }
+        ],
+        deps: ['dojo/domReady!'],
+        callback: function () { require(['js/main']); }
+      };
+  </script>
+  <script src='http://js.arcgis.com/3.13/init.js'></script>
 </body>
 </html>
  
