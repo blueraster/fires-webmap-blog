@@ -7,7 +7,7 @@ require([
       "esri/geometry/Extent",
 ], function (map,LayerSwipe,arcgisUtils,array,Bookmarks,Extent) {
 
-  var webmapId = '2f5dc964df1c478e806beb2f59946363',
+  var webmapId = 'f075670a236546bba9bf22cd11dd4e07',
       mapDeferred,
       options,
       webmap,
