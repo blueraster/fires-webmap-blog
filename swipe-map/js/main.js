@@ -6,7 +6,7 @@ require([
       "esri/dijit/Bookmarks",
 ], function (map,LayerSwipe,arcgisUtils,array,Bookmarks) {
 
-  var webmapId = 'f075670a236546bba9bf22cd11dd4e07',
+  var webmapId = '8f698377b11f4b55a2710dc5572bbd16',
       mapDeferred,
       options,
       webmap,
