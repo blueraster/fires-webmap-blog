@@ -4,7 +4,8 @@ require([
       "esri/arcgis/utils",
       "dojo/_base/array",
       "esri/dijit/Bookmarks",
-], function (map,LayerSwipe,arcgisUtils,array,Bookmarks) {
+      "esri/geometry/Extent",
+], function (map,LayerSwipe,arcgisUtils,array,Bookmarks,Extent) {
 
   var webmapId = '2f5dc964df1c478e806beb2f59946363',
       mapDeferred,
@@ -12,11 +13,13 @@ require([
       webmap,
       bookmarks,
       bookmark_list;
+      
 
   options = {
     mapOptions: {
       logo: false,
-      sliderPosition:"top-right"
+      sliderPosition:"top-right",
+      extent:new Extent({"type":"extent","xmin":11325950.484910764,"ymin":-15170.784314199473,"xmax":11327714.50820401,"ymax":-14143.66174670413,"spatialReference":{"wkid":102100,"latestWkid":3857}})
     }
   };
 
@@ -24,10 +27,12 @@ require([
   mapDeferred.then(function (response) {
     webmap = response.map;
     bookmarks_list = response.itemInfo.itemData.bookmarks;
+    image_extent = new Extent(bookmarks_list[1].extent);
+    console.log(JSON.stringify(image_extent));
+    //webmap.setExtent(image_extent);
 
 
-
-    //webmap.disableMapNavigation();
+    webmap.disableMapNavigation();
 
 
     var title = "WV03";
@@ -36,6 +41,7 @@ require([
         //to find the one with the specified title;
         var layers = response.itemInfo.itemData.operationalLayers;
         array.some(layers, function(layer){
+          console.log(layer);
           if(layer.title === title){
             id = layer.id;
             if(layer.featureCollection && layer.featureCollection.layers.length){
@@ -56,6 +62,7 @@ require([
           }, "swipeDiv");
           swipeWidget.startup();
         }
+
         // bookmarks = new Bookmarks({
         //   map: webmap, 
         //   bookmarks: bookmarks_list

@@ -11,7 +11,9 @@
       padding:0;
       margin:0;
       height:100%;
-      font-family: "Trebuchet MS", Helvetica, sans-serif
+    }
+    .esriSimpleSlider{
+      display: none;
     }
     .esriBookmarks {
   width: 215px;
@@ -30,20 +32,19 @@
         height: 86px;
         width: 86px;
         z-index: 5;
-        left: 17px;
-        top: 0px;
+        left: 5px;
+        top: 5px;
       }
       .legend {
-        background-color: #104674;
+        background-color: #222324;
         position: absolute;
-        width: 263px;
+        width: 200px;
         color: white;
         z-index: 5;
         right: 10px;
         bottom: 40px;
         box-shadow: 0px 0px 2px #ddd;
-        font-size: 16px;
-        padding: 20px;
+        font-size: 12px;
       }
       .legend-swatch {
         border: 1px solid #000;
@@ -53,48 +54,23 @@
         height: 15px;
         width: 15px;
       }
-      .legend-square{
-        border: 2px solid #910702;
-        display: inline-block;
-        margin: 0 2px;
-        height: 15px;
-        width: 15px;
-      }
       .header{
         padding-left: 5px;
         padding-top: 5px;
         padding-bottom: 5px;
-        font-size: 15px
+        font-size: 13px
       }
       .fires { background-color: #FF7F7F; }
       .fires-noaa{ background-color: #FCB54B; }
-      .protected-areas {  }
+      .protected-areas { background-color: #910702; }
   </style>
 </head>
 <body class='nihilo'>
   <div id="map" class="map">
     <div id="swipeDiv"></div>
-    <div id='bookmarks'></div>
-    <div class="gfw-logo"></div>
-      <div class="legend">
-      <div class='header'>Dates: June 24, 2015 - July 9, 2015</div>
-        <table>
-          <tbody>
-            <tr>
-              <td><span class="legend-swatch fires-noaa"></span></td>
-              <td><span class="legend-label">NASA Fire Alerts</span></td>
-            </tr>
-            <tr>
-              <td><span class="legend-swatch fires"></span></td>
-              <td><span class="legend-label">NOAA-18 fires</span></td>
-            </tr>
-            <tr>
-              <td><span class="legend-square protected-areas"></span></td>
-              <td><span class="legend-label">Tesso Nilo National Park</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <!-- <div id='bookmarks'></div> -->
+    <!-- <div class="gfw-logo"></div> -->
+
     </div>
   </div>
 
