@@ -1,9 +1,14 @@
 require([
-  'esri/map'
-], function (Map) {
+  'esri/arcgis/utils'
+], function (arcgisUtils) {
 
-  var map = new Map('map', {
-    basemap: 'topo'
+  var webmapId = '2f5dc964df1c478e806beb2f59946363',
+      mapDeferred,
+      webmap;
+
+  mapDeferred = arcgisUtils.createMap(webmapId, 'map');
+  mapDeferred.then(function (response) {
+    webmap = response.map;
   });
 
 });
